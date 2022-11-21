@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Actor, Director, Writer } from 'src/people/people.entity';
+import { Actor, Director, Writer } from 'src/movies/services/people/people.entity';
 import { Repository } from 'typeorm';
 
 type PeopleType = Actor[] | Director[] | Writer[];

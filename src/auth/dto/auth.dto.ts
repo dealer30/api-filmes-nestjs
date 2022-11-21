@@ -19,4 +19,11 @@ export class tokenDto {
     this.id = user.id;
     this.name = user.name;
   }
+
+  get object(){
+    return {
+      id: this.id,
+      name: this.name
+    }
+  }
 }

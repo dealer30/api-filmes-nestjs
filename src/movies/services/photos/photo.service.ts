@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { PhotoDB, BannerDB } from 'src/photos/photo.entity';
+import { PhotoDB, BannerDB } from 'src/movies/services/photos/photo.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()

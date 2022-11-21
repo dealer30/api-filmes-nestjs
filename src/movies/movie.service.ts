@@ -4,10 +4,10 @@ import { MovieDB } from 'src/movies/movie.entity';
 import { ILike, Repository } from 'typeorm';
 import { v4 } from 'uuid';
 import { CreateMovieDto } from 'src/movies/dto/create-movie.dto';
-import { PeopleService } from 'src/people/people.service';
-import { PhotoService } from 'src/photos/photo.service';
-import { CategoryService } from 'src/categories/categories.service';
-import { Actor, Director, Writer } from 'src/people/people.entity';
+import { PeopleService } from 'src/movies/services/people/people.service';
+import { PhotoService } from 'src/movies/services/photos/photo.service';
+import { CategoryService } from 'src/movies/services/categories/categories.service';
+import { Actor, Director, Writer } from 'src/movies/services/people/people.entity';
 import { GetMovieDto } from './dto/get-movie.dto';
 import { UpdateMovieDto } from './dto/update-movie.dto';
 

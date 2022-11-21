@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
-import { MovieDB } from '../movies/movie.entity';
+import { MovieDB } from '../../movie.entity';
 
 @Entity()
 export class Category {

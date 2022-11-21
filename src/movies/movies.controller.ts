@@ -8,14 +8,20 @@ import {
   Param,
   Delete,
 } from '@nestjs/common';
+import { ApiBody, ApiParam, ApiQuery, ApiTags, ApiBearerAuth, ApiSecurity } from '@nestjs/swagger';
 import {
   MovieSchema,
   UpdateMovieSchema,
   ValidationCreateMovie,
   ValidationUpdateMovie,
 } from 'src/movies/movie.schema';
+import { CreateMovieDto } from './dto/create-movie.dto';
 import { GetMovieDto } from './dto/get-movie.dto';
+import { skipQuery, takeQuery, titleQuery } from './dto/search-movie.dto';
+import { UpdateMovieDto } from './dto/update-movie.dto';
 import { MovieService } from './movie.service';
+@ApiTags('Filmes')
+@ApiSecurity('bearer')
 @Controller('movies')
 export class MoviesController {
   constructor(private serv: MovieService) {}
@@ -33,21 +39,29 @@ export class MoviesController {
     return new GetMovieDto(searchById);
   }
 
+  @ApiParam(takeQuery('Filmes'))
+  @ApiParam(skipQuery('Filmes'))
+  @ApiParam(titleQuery('Filmes'))
   @Get('search/title')
   public async search(@Query() { take, skip, query }) {
     return await this.serv.searchByTitle(take, skip, query);
   }
 
+  @ApiParam(takeQuery('Categoria'))
+  @ApiQuery(skipQuery('Categoria'))
+  @ApiQuery(titleQuery('Categoria'))
   @Get('search/category')
   public async searchByCategory(@Query() { take, skip, query }) {
     return await this.serv.searchByCategory(take, skip, query);
   }
 
+  @ApiBody({ type: CreateMovieDto})
   @Post()
   public async create(@Body(ValidationCreateMovie) body: MovieSchema) {
     return await this.serv.createNew(body);
   }
 
+  @ApiBody({ type: UpdateMovieDto})
   @Put(':id')
   public async update(
     @Param('id') id: string,

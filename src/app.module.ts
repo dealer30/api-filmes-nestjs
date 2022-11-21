@@ -5,9 +5,9 @@ import { AppService } from './app.service';
 import { MoviesModule } from './movies/movies.module';
 import { AuthModule } from './auth/auth.module';
 import { configService } from './config/config.service';
-import { PeopleModule } from './people/people.module';
-import { PhotosModule } from './photos/photo.module';
-import { CategoriesModule } from './categories/categories.module';
+import { PeopleModule } from './movies/services/people/people.module';
+import { PhotosModule } from './movies/services/photos/photo.module';
+import { CategoriesModule } from './movies/services/categories/categories.module';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 
 @Module({

@@ -9,12 +9,12 @@ import { MovieService } from './movie.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { MovieDB } from './movie.entity';
 import { PagerMiddleware } from 'src/middlewares/pager/pager.middleware';
-import { PhotoService } from 'src/photos/photo.service';
-import { PeopleService } from 'src/people/people.service';
-import { BannerDB, PhotoDB } from 'src/photos/photo.entity';
-import { Actor, Director, Writer } from 'src/people/people.entity';
-import { Category } from 'src/categories/categories.entity';
-import { CategoryService } from 'src/categories/categories.service';
+import { PhotoService } from 'src/movies/services/photos/photo.service';
+import { PeopleService } from 'src/movies/services/people/people.service';
+import { BannerDB, PhotoDB } from 'src/movies/services/photos/photo.entity';
+import { Actor, Director, Writer } from 'src/movies/services/people/people.entity';
+import { Category } from 'src/movies/services/categories/categories.entity';
+import { CategoryService } from 'src/movies/services/categories/categories.service';
 @Module({
   imports: [
     TypeOrmModule.forFeature([

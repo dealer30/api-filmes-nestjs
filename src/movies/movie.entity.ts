@@ -1,7 +1,7 @@
 import { Entity, Column, OneToMany, PrimaryColumn, OneToOne } from 'typeorm';
-import { PhotoDB, BannerDB } from '../photos/photo.entity';
-import { Director, Actor, Writer } from '../people/people.entity';
-import { Category } from 'src/categories/categories.entity';
+import { PhotoDB, BannerDB } from './services/photos/photo.entity';
+import { Director, Actor, Writer } from './services/people/people.entity';
+import { Category } from 'src/movies/services/categories/categories.entity';
 
 @Entity()
 export class MovieDB {
