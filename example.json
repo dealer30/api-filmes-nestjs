@@ -1,0 +1,40 @@
+[{
+    "title": "Velozes e Furiosos 4",
+    "plot": "Depois de ser visto rumo ao México no filme que deu origem a série, Dominic Toretto (Vin Diesel) reaparece na República Dominicana praticando seus golpes ao lado de sua namorada Letty (Michelle Rodriguez) e sua gangue. Com o FBI na sua cola, Dom decide fugir para não comprometer seus comparsas. Contudo, um assassinato cometido por um traficante de drogas acende nele uma sede de vingança que o faz cruzar novamente com o agente Brian O'Conner (Paul Walker) numa perigosa missão.",
+    "age_group": 14,
+    "duration_in_min": 100,
+    "debut": "2009-04-03T00:00:00+0000",
+    "category": [
+        "Ação"
+    ],
+    "photos": {
+        "banner": "https://br.web.img3.acsta.net/c_310_420/pictures/210/445/21044501_2013092621313492.jpg",
+        "others": [
+            "https://www.planocritico.com/wp-content/uploads/2015/11/156-Velozes-e-Furiosos-4.jpg", 
+            "https://media.gazetadopovo.com.br/2009/04/ee27e63903fe0a92b9775b8189b35ea6-gpMedium.jpg"
+        ]
+    },
+    "director": [ "Justin Lin" ],
+    "cast": [ "Vin Diesel", "Paul Walker", "Jordana Brewster", "Michelle Rodriguez"],
+    "writers": [ "Gary Scott Thompson", "Chris Morgan"]
+},
+{
+    "title": "Velozes e Furiosos 8",
+    "plot": "Dom (Vin Diesel) e Letty (Michelle Rodriguez) estão curtindo a lua de mel em Havana, mas a súbita aparição de Cipher (Charlize Theron) atrapalha os planos do casal. Ela logo arma um plano para chantagear Dom, de forma que ele traia seus amigos e passe a ajudá-la a obter ogivas nucleares. Tal situação faz com Letty reúna os velhos amigos, que agora precisam enfrentar Cipher e, consequentemente, Dom.",
+    "age_group": 14,
+    "duration_in_min": 136,
+    "debut": "2009-04-03T00:00:00+0000",
+    "category": [
+        "Ação", "Suspense"
+    ],
+    "photos": {
+        "banner": "https://br.web.img3.acsta.net/c_310_420/pictures/17/03/27/09/49/121118.jpg",
+        "others": [
+            "https://www.jornalspnorte.com.br/wp-content/uploads/2017/04/070417_velozes-e-furiosos-8-1.jpg", 
+            "https://observatoriodocinema.uol.com.br/wp-content/uploads/2017/03/velozes8.jpg"
+        ]
+    },
+    "director": ["F. Gary Gray"],
+    "cast": [ "Vin Diesel", "Dwayne Johnson", "Jason Statham"],
+    "writers": ["Chris Morgan"]
+}]
