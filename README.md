@@ -1,9 +1,6 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="images/logogetfilmes.png" width="700" alt="Nest Logo" /></a>
+  <a href="https://movies-api-nestjs.herokuapp.com/docs#/" target="blank"><img src="images/logogetfilmes.png" width="700" alt="Logo Get Filmes" /></a>
 </p>
-
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
 
   <p align="center">Utilizando a plataforma NestJS para criar uma <a href="http://nodejs.org" target="_blank">Aplicação</a> para controle de filmes.</p>
 
