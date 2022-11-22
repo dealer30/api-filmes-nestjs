@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { CACHE_MANAGER, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { MovieDB } from 'src/movies/movie.entity';
 import { ILike, Repository } from 'typeorm';
@@ -7,7 +7,12 @@ import { CreateMovieDto } from 'src/movies/dto/create-movie.dto';
 import { PeopleService } from 'src/movies/services/people/people.service';
 import { PhotoService } from 'src/movies/services/photos/photo.service';
 import { CategoryService } from 'src/movies/services/categories/categories.service';
-import { Actor, Director, Writer } from 'src/movies/services/people/people.entity';
+import {
+  Actor,
+  Director,
+  Writer,
+} from 'src/movies/services/people/people.entity';
+import { Cache } from 'cache-manager';
 import { GetMovieDto } from './dto/get-movie.dto';
 import { UpdateMovieDto } from './dto/update-movie.dto';
 
@@ -19,6 +24,8 @@ export class MovieService {
     private readonly people_service: PeopleService,
     private readonly photo_service: PhotoService,
     private readonly category_service: CategoryService,
+    @Inject(CACHE_MANAGER)
+    private readonly cacheManager: Cache,
   ) {}
 
   public async getPaged(take = 10, skip = 0): Promise<GetMovieDto[]> {
@@ -42,22 +49,55 @@ export class MovieService {
     skip = 0,
     query: string,
   ): Promise<GetMovieDto[]> {
-    const movies = await this.movies_repo.find({
-      relations: ['cast', 'director', 'writers', 'photo', 'banner', 'category'],
-      where: {
-        title: ILike(`%${query}%`),
-      },
-      take,
-      skip,
-    });
+    const findCache = await this.cacheManager.get[query];
+    if (findCache == undefined) {
+      const movies = await this.movies_repo.find({
+        relations: [
+          'cast',
+          'director',
+          'writers',
+          'photo',
+          'banner',
+          'category',
+        ],
+        where: {
+          title: ILike(`%${query}%`),
+        },
+        take,
+        skip,
+      });
 
-    const result = [];
+      const result = [];
 
-    movies.map((movie) => {
-      result.push(new GetMovieDto(movie));
-    });
+      movies.map((movie) => {
+        this.cacheManager.set(query, movie.id);
+        result.push(new GetMovieDto(movie));
+      });
 
-    return result;
+      return result;
+    } else {
+      const movies = await this.movies_repo.find({
+        relations: [
+          'cast',
+          'director',
+          'writers',
+          'photo',
+          'banner',
+          'category',
+        ],
+        where: {
+          id: findCache,
+        },
+        take,
+        skip,
+      });
+
+      const result = [];
+
+      movies.map((movie) => {
+        result.push(new GetMovieDto(movie));
+      });
+    }
   }
 
   public async searchById(id: string): Promise<MovieDB> {

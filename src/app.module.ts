@@ -8,11 +8,9 @@ import { configService } from './config/config.service';
 import { PeopleModule } from './movies/services/people/people.module';
 import { PhotosModule } from './movies/services/photos/photo.module';
 import { CategoriesModule } from './movies/services/categories/categories.module';
-import { APP_INTERCEPTOR } from '@nestjs/core';
 
 @Module({
   imports: [
-    CacheModule.register(configService.getCacheConfig()),
     MoviesModule,
     AuthModule,
     TypeOrmModule.forRoot(configService.getTypeOrmConfig()),
@@ -23,10 +21,6 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
   controllers: [AppController],
   providers: [
     AppService,
-    {
-      provide: APP_INTERCEPTOR,
-      useClass: CacheInterceptor,
-    },
   ],
 })
 export class AppModule {}

@@ -37,4 +37,34 @@
     "director": ["F. Gary Gray"],
     "cast": [ "Vin Diesel", "Dwayne Johnson", "Jason Statham"],
     "writers": ["Chris Morgan"]
+},
+{
+  "title": "O Senhor dos Anéis: A Sociedade do Anel",
+  "plot": "Numa terra fantástica e única, chamada Terra-Média, um hobbit (seres de estatura entre 80 cm e 1,20 m, com pés peludos e bochechas um pouco avermelhadas) recebe de presente de seu tio o Um Anel, um anel mágico e maligno que precisa ser destruído antes que caia nas mãos do mal. Para isso o hobbit Frodo (Elijah Woods) terá um caminho árduo pela frente, onde encontrará perigo, medo e personagens bizarros. Ao seu lado para o cumprimento desta jornada aos poucos ele poderá contar com outros hobbits, um elfo, um anão, dois humanos e um mago, totalizando 9 pessoas que formarão a Sociedade do Anel.",
+  "age_group": 12,
+  "duration_in_min": 178,
+  "debut": "2002-01-01T00:00:00+0000",
+  "photos": {
+    "banner": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSqx8SUXCHUTeMs5LdSyZgjQ66qkWE_NQa4Xax2Wf2rS2_1TBmf",
+    "others": [
+      "https://tm.ibxk.com.br/2019/07/26/26184221286369.jpg?ims=1200x675",
+      "https://almalondrina.com.br/wp-content/uploads/2019/05/Meia_Entrada_Cast_21_05_2019.jpg"
+    ]
+  },
+  "category": [
+    "Aventura",
+    "Fantasia"
+  ],
+  "director": [
+    "Peter Jackson"
+  ],
+  "cast": [
+    "Elijah Wood",
+    "Ian McKellen",
+    "Liv Tyler"
+  ],
+  "writers": [
+    "J.R.R. Tolkien",
+    "Peter Jackson"
+  ]
 }]

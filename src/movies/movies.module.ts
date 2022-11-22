@@ -1,4 +1,5 @@
 import {
+  CacheModule,
   MiddlewareConsumer,
   Module,
   NestModule,
@@ -12,7 +13,11 @@ import { PagerMiddleware } from 'src/middlewares/pager/pager.middleware';
 import { PhotoService } from 'src/movies/services/photos/photo.service';
 import { PeopleService } from 'src/movies/services/people/people.service';
 import { BannerDB, PhotoDB } from 'src/movies/services/photos/photo.entity';
-import { Actor, Director, Writer } from 'src/movies/services/people/people.entity';
+import {
+  Actor,
+  Director,
+  Writer,
+} from 'src/movies/services/people/people.entity';
 import { Category } from 'src/movies/services/categories/categories.entity';
 import { CategoryService } from 'src/movies/services/categories/categories.service';
 import { JwtModule } from '@nestjs/jwt';
@@ -29,10 +34,18 @@ import { JwtStrategy } from './jwt.strategy';
       Director,
       Category,
     ]),
+    CacheModule.register(configService.getCacheConfig()),
     JwtModule.register(configService.getJwtConfig()),
   ],
   controllers: [MoviesController],
-  providers: [MovieService, PhotoService, PeopleService, CategoryService, ConfigService, JwtStrategy],
+  providers: [
+    MovieService,
+    PhotoService,
+    PeopleService,
+    CategoryService,
+    ConfigService,
+    JwtStrategy,
+  ],
 })
 export class MoviesModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {

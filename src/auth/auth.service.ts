@@ -1,10 +1,16 @@
-import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  CACHE_MANAGER,
+  Inject,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './auth.entity';
 import * as bcrypt from 'bcrypt';
 import { LoginDto, RegisterDto, tokenDto } from './dto/auth.dto';
 import { JwtService } from '@nestjs/jwt';
+import { Cache } from 'cache-manager';
 
 @Injectable()
 export class AuthService {
@@ -13,9 +19,11 @@ export class AuthService {
     private readonly UserRepository: Repository<User>,
     @Inject(JwtService)
     private readonly jwtService: JwtService,
+    @Inject(CACHE_MANAGER)
+    private readonly cacheManager: Cache,
   ) {}
 
-  async decodeToken(token: string){
+  async decodeToken(token: string) {
     return this.jwtService.decode(token);
   }
 
@@ -60,6 +68,7 @@ export class AuthService {
       const token = this.jwtService.sign(payload.object);
 
       if (match) {
+        await this.cacheManager.set(token, userExists.id);
         return { message: 'Login efetuado com sucesso!', token: token };
       } else {
         throw new UnauthorizedException('Senha incorreta!');
@@ -68,9 +77,21 @@ export class AuthService {
   }
 
   async me(token: string): Promise<User> {
-    const payload = await this.decodeToken(token);
-    const user = await this.UserRepository.findOne({ where: { id: payload['id'] } });
-    delete user.password;
-    return user;
+    const id = await this.cacheManager.get[token];
+    if (id == undefined) {
+      const payload = await this.decodeToken(token);
+      const user = await this.UserRepository.findOne({
+        where: { id: payload['id'] },
+      });
+      delete user.password;
+      this.cacheManager.set(token, user.id);
+      return user;
+    } else {
+      const user = await this.UserRepository.findOne({
+        where: { id: id },
+      });
+      delete user.password;
+      return user;
+    }
   }
 }

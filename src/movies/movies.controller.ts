@@ -8,6 +8,8 @@ import {
   Param,
   Delete,
   UseGuards,
+  UseInterceptors,
+  CacheInterceptor,
 } from '@nestjs/common';
 import {
   ApiBody,
@@ -15,6 +17,7 @@ import {
   ApiQuery,
   ApiTags,
   ApiSecurity,
+  ApiHeaders,
 } from '@nestjs/swagger';
 import {
   MovieSchema,
@@ -29,6 +32,13 @@ import { UpdateMovieDto } from './dto/update-movie.dto';
 import { JwtAuthGuard } from './jwt-auth.guard';
 import { MovieService } from './movie.service';
 @ApiTags('Filmes')
+@ApiHeaders([
+  {
+    name: 'Authorization',
+    description: 'Bearer Token',
+    required: true,
+  },
+])
 @ApiSecurity('bearer')
 @Controller('movies')
 export class MoviesController {
@@ -36,6 +46,7 @@ export class MoviesController {
 
   @ApiParam(takeQuery('Filmes'))
   @ApiParam(skipQuery('Filmes'))
+  @UseInterceptors(CacheInterceptor)
   @UseGuards(JwtAuthGuard)
   @Get()
   public async getPaged(@Query() { take, skip }) {
@@ -43,6 +54,7 @@ export class MoviesController {
     return get;
   }
 
+  @UseInterceptors(CacheInterceptor)
   @UseGuards(JwtAuthGuard)
   @Get('id/:id')
   public async searchById(@Param('id') id: string) {
@@ -54,6 +66,7 @@ export class MoviesController {
   @ApiParam(takeQuery('Filmes'))
   @ApiParam(skipQuery('Filmes'))
   @ApiParam(titleQuery('Filmes'))
+  @UseInterceptors(CacheInterceptor)
   @UseGuards(JwtAuthGuard)
   @Get('search/title')
   public async search(@Query() { take, skip, query }) {
@@ -63,6 +76,7 @@ export class MoviesController {
   @ApiParam(takeQuery('Categoria'))
   @ApiQuery(skipQuery('Categoria'))
   @ApiQuery(titleQuery('Categoria'))
+  @UseInterceptors(CacheInterceptor)
   @UseGuards(JwtAuthGuard)
   @Get('search/category')
   public async searchByCategory(@Query() { take, skip, query }) {
