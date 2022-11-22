@@ -1,38 +1,37 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
+  <a href="http://nestjs.com/" target="blank"><img src="images/logogetfilmes.png" width="700" alt="Nest Logo" /></a>
 </p>
 
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+  <p align="center">Utilizando a plataforma NestJS para criar uma <a href="http://nodejs.org" target="_blank">Aplicação</a> para controle de filmes.</p>
 
-## Description
+## Descrição
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Esse software se trata de uma API em NestJS que realiza um CRUD de Filmes, além de operações adicionais como cadastro, autenticação de usuários, busca de filmes por título, categoria, etc. [Clique aqui para acessar em produção.](https://movies-api-nestjs.herokuapp.com/docs#/)
 
-## Installation
+## Instalação
 
 ```bash
 $ npm install
 ```
+## .env(obrigatório)
 
-## Running the app
+```bash
+DATABASE_URL="url do postgres"
+PORT="porta da aplicação"
+MODE="DEV"
+REDIS_HOST="ip redis"
+REDIS_PORT="porta redis"
+REDIS_PASSWORD="senha redis"
+CACHE_TTL="ttl do cache"
+CACHE_MAX="máximo de itens gravados no cache"
+JWT_SECRET="segredo dos jsonwebtokens"
+JWT_EXPIRES_IN="tempo de expiração do jwt"
+```
+
+## Rodando a aplicação
 
 ```bash
 # development
@@ -45,29 +44,15 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
 
-```bash
-# unit tests
-$ npm run test
+## Do Autor
 
-# e2e tests
-$ npm run test:e2e
+Essa foi a primeira vez que utilizei NestJS, PostgreSQL e Redis para criação de API, já havia utilizado TypeScript junto ao NodeJS e MySQL e havia tido bons resultados. [Também já havia criado um site, por isso não tive problemas com deploy.](https://colet.tech) 
 
-# test coverage
-$ npm run test:cov
-```
+Aprendi bastante e fiquei satisfeito com os resultados. Tive alguns problemas em relação a conteinerização que ainda estou estudando e em relação ao Cache também, tive alguns problemas para me familiarizar e como o tempo foi pouco, não pude fazer coisas muito complexas com o cache, visto que o DB já tem um certo grau de complexidade devido aos relacionamentos. Gostei muito do NestJS e da TypeORM que é uma poderosa ferramenta para criação de queries.
 
-## Support
+Além disso, gostei muito da forma de documentar do Swagger junto ao NestJS, pode ver que as documentações estão funcionando 100%. =)
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## Siga-me nas redes!
 
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+- Linkedin - [Lucas Reis](https://www.linkedin.com/in/lucasreis30/)
