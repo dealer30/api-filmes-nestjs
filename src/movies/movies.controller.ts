@@ -9,7 +9,13 @@ import {
   Delete,
   UseGuards,
 } from '@nestjs/common';
-import { ApiBody, ApiParam, ApiQuery, ApiTags, ApiBearerAuth, ApiSecurity } from '@nestjs/swagger';
+import {
+  ApiBody,
+  ApiParam,
+  ApiQuery,
+  ApiTags,
+  ApiSecurity,
+} from '@nestjs/swagger';
 import {
   MovieSchema,
   UpdateMovieSchema,
@@ -45,7 +51,6 @@ export class MoviesController {
     return new GetMovieDto(searchById);
   }
 
-  
   @ApiParam(takeQuery('Filmes'))
   @ApiParam(skipQuery('Filmes'))
   @ApiParam(titleQuery('Filmes'))
@@ -64,14 +69,14 @@ export class MoviesController {
     return await this.serv.searchByCategory(take, skip, query);
   }
 
-  @ApiBody({ type: CreateMovieDto})
+  @ApiBody({ type: CreateMovieDto })
   @UseGuards(JwtAuthGuard)
   @Post()
   public async create(@Body(ValidationCreateMovie) body: MovieSchema) {
     return await this.serv.createNew(body);
   }
 
-  @ApiBody({ type: UpdateMovieDto})
+  @ApiBody({ type: UpdateMovieDto })
   @UseGuards(JwtAuthGuard)
   @Put(':id')
   public async update(
