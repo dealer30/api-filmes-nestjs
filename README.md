@@ -46,7 +46,7 @@ $ npm run start:prod
 
 Essa foi a primeira vez que utilizei NestJS, PostgreSQL e Redis para criação de API, já havia utilizado TypeScript junto ao NodeJS e MySQL e havia tido bons resultados. [Também já havia criado um site, por isso não tive problemas com deploy.](https://colet.tech) 
 
-Aprendi bastante e fiquei satisfeito com os resultados. Tive alguns problemas em relação a conteinerização que ainda estou estudando e em relação ao Cache também, tive alguns problemas para me familiarizar e como o tempo foi pouco, não pude fazer coisas muito complexas com o cache, visto que o DB já tem um certo grau de complexidade devido aos relacionamentos. Gostei muito do NestJS e da TypeORM que é uma poderosa ferramenta para criação de queries.
+Aprendi bastante e fiquei satisfeito com os resultados. Tive alguns problemas em relação a conteinerização que ainda estou estudando e em relação ao Cache também, tive alguns problemas para me familiarizar e como o tempo foi pouco, não pude fazer coisas muito complexas com o cache, visto que o DB já tem um certo grau de complexidade devido aos relacionamentos. <strong>De propósito, coloquei uma rota de busca sem cache e outra com cache para comparar a velocidade.</strong> Gostei muito do NestJS e da TypeORM que é uma poderosa ferramenta para criação de queries.
 
 Além disso, gostei muito da forma de documentar do Swagger junto ao NestJS, pode ver que as documentações estão funcionando 100%. =)
 

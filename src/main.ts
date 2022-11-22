@@ -7,12 +7,14 @@ import { configService } from './config/config.service';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  // Use ValidationPipe to validate all incoming requests
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
     }),
   );
 
+  // Creating Document for Swagger
   const document = SwaggerModule.createDocument(
     app,
     new DocumentBuilder()
@@ -27,7 +29,10 @@ async function bootstrap() {
       .build(),
   );
 
+  // Creating Swagger
   SwaggerModule.setup('docs', app, document);
+
+  // Starting the server
   await app.listen(configService.getPort() || 3000);
 }
 bootstrap();

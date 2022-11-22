@@ -39,6 +39,8 @@ import { MovieService } from './movie.service';
 export class MoviesController {
   constructor(private serv: MovieService) {}
 
+  // Route GET /movies
+  // Route used to get movies with pagination
   @ApiParam(takeQuery('Filmes'))
   @ApiParam(skipQuery('Filmes'))
   @UseInterceptors(CacheInterceptor)
@@ -49,6 +51,8 @@ export class MoviesController {
     return get;
   }
 
+  // Route GET /movies/id/:id
+  // Route used to get a movie by id
   @UseInterceptors(CacheInterceptor)
   @UseGuards(JwtAuthGuard)
   @Get('id/:id')
@@ -58,6 +62,8 @@ export class MoviesController {
     return new GetMovieDto(searchById);
   }
 
+  // Routes that search for movies by title/category
+  // Route GET /movies/search/tile
   @ApiParam(takeQuery('Filmes'))
   @ApiParam(skipQuery('Filmes'))
   @ApiParam(titleQuery('Filmes'))
@@ -68,6 +74,7 @@ export class MoviesController {
     return await this.serv.searchByTitle(take, skip, query);
   }
 
+  // Route GET /movies/search/title
   @ApiParam(takeQuery('Categoria'))
   @ApiQuery(skipQuery('Categoria'))
   @ApiQuery(titleQuery('Categoria'))
@@ -78,6 +85,8 @@ export class MoviesController {
     return await this.serv.searchByCategory(take, skip, query);
   }
 
+  // Route POST /movies
+  // Route used to create new movie.
   @ApiBody({ type: CreateMovieDto })
   @UseGuards(JwtAuthGuard)
   @Post()
@@ -85,6 +94,8 @@ export class MoviesController {
     return await this.serv.createNew(body);
   }
 
+  // Route PUT /movies/:id
+  // Route used to update a movie.
   @ApiBody({ type: UpdateMovieDto })
   @UseGuards(JwtAuthGuard)
   @Put(':id')
@@ -98,6 +109,8 @@ export class MoviesController {
     return await this.serv.update(movieObject, body);
   }
 
+  // Route DELETE /movies/:id
+  // Route used to delete a movie.
   @UseGuards(JwtAuthGuard)
   @Delete(':id')
   public async delete(@Param('id') id: string) {

@@ -28,6 +28,7 @@ export class MovieService {
     private readonly cacheManager: Cache,
   ) {}
 
+  // Service for get movies paged
   public async getPaged(take = 10, skip = 0): Promise<GetMovieDto[]> {
     const movies = await this.movies_repo.find({
       relations: ['cast', 'director', 'writers', 'photo', 'banner', 'category'],
@@ -44,11 +45,13 @@ export class MovieService {
     return result;
   }
 
+  // Service to search movies by title
   public async searchByTitle(
     take = 10,
     skip = 0,
     query: string,
   ): Promise<GetMovieDto[]> {
+    // try to find in cache
     const findCache = await this.cacheManager.get[query];
     if (findCache == undefined) {
       const movies = await this.movies_repo.find({
@@ -70,12 +73,16 @@ export class MovieService {
       const result = [];
 
       movies.map((movie) => {
+        // Here we create a new instance of the DTO
+        // and pass the movie to the constructor
+        // also sets query and movie id to the cache
         this.cacheManager.set(query, movie.id);
         result.push(new GetMovieDto(movie));
       });
 
       return result;
     } else {
+      // if the query is in the cache, we search the movie by id
       const movies = await this.movies_repo.find({
         relations: [
           'cast',
@@ -100,6 +107,7 @@ export class MovieService {
     }
   }
 
+  // Service to search movie by id
   public async searchById(id: string): Promise<MovieDB> {
     const search = await this.movies_repo.findOne({
       relations: ['cast', 'director', 'writers', 'photo', 'banner', 'category'],
@@ -111,6 +119,8 @@ export class MovieService {
     return search;
   }
 
+  // Service to search movie by category
+  // It's not set in cache to compare speed with searchByTitle
   public async searchByCategory(
     take = 10,
     skip = 0,
@@ -135,6 +145,7 @@ export class MovieService {
     return result;
   }
 
+  // Service to create a new movie
   public async createNew(movie: CreateMovieDto): Promise<GetMovieDto> {
     const movieId = v4();
     const actors = movie.cast;
@@ -201,6 +212,7 @@ export class MovieService {
     return new GetMovieDto(newMovie);
   }
 
+  // Service to update a movie
   public async update(
     movie: MovieDB,
     updateBody: UpdateMovieDto,
@@ -214,6 +226,7 @@ export class MovieService {
     return new GetMovieDto(savedMovie);
   }
 
+  // Service to delete a movie
   public async delete(movie: MovieDB): Promise<MovieDB> {
     await this.people_service.deletePeople(movie.cast, Actor);
     await this.people_service.deletePeople(movie.director, Director);
