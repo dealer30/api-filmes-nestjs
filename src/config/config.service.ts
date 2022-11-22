@@ -62,6 +62,7 @@ export class ConfigService {
       store: redisStore,
       host: this.getValue('REDIS_HOST'),
       port: parseInt(this.getValue('REDIS_PORT')),
+      password: this.getValue('REDIS_PASSWORD'),
       ttl: parseInt(this.getValue('CACHE_TTL')),
       isGlobal: true,
       max: parseInt(this.getValue('CACHE_MAX')),
