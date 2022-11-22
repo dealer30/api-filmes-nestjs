@@ -20,6 +20,10 @@ async function bootstrap() {
       .setDescription(
         'API de Filmes desenvolvida para o teste técnico da MKS Sistemas.',
       )
+      .addBearerAuth(
+        { type: 'http', scheme: 'bearer', bearerFormat: 'JWT' },
+        'Bearer Token',
+      )
       .build(),
   );
 

@@ -49,9 +49,7 @@ export class ConfigService {
 
       migrations: ['src/migration/*.ts'],
 
-      ssl: {
-        rejectUnauthorized: false,
-      },
+      ssl: false,
     };
   }
 

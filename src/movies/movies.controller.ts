@@ -18,6 +18,8 @@ import {
   ApiTags,
   ApiSecurity,
   ApiHeaders,
+  ApiBearerAuth,
+  ApiHeader,
 } from '@nestjs/swagger';
 import {
   MovieSchema,
@@ -32,14 +34,7 @@ import { UpdateMovieDto } from './dto/update-movie.dto';
 import { JwtAuthGuard } from './jwt-auth.guard';
 import { MovieService } from './movie.service';
 @ApiTags('Filmes')
-@ApiHeaders([
-  {
-    name: 'Authorization',
-    description: 'Bearer Token',
-    required: true,
-  },
-])
-@ApiSecurity('bearer')
+@ApiBearerAuth('Bearer Token')
 @Controller('movies')
 export class MoviesController {
   constructor(private serv: MovieService) {}
