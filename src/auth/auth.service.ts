@@ -15,6 +15,10 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
+  async decodeToken(token: string){
+    return this.jwtService.decode(token);
+  }
+
   async createUser(user: User) {
     const hash = await bcrypt.hash(user.password, 10);
     user.password = hash;
@@ -61,5 +65,12 @@ export class AuthService {
         throw new UnauthorizedException('Senha incorreta!');
       }
     }
+  }
+
+  async me(token: string): Promise<User> {
+    const payload = await this.decodeToken(token);
+    const user = await this.UserRepository.findOne({ where: { id: payload['id'] } });
+    delete user.password;
+    return user;
   }
 }

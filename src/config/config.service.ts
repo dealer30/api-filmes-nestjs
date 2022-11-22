@@ -84,6 +84,12 @@ const configService = new ConfigService(process.env).ensureValues([
   'POSTGRES_USER',
   'POSTGRES_PASSWORD',
   'POSTGRES_DATABASE',
+  'REDIS_HOST',
+  'REDIS_PORT',
+  'CACHE_TTL',
+  'CACHE_MAX',
+  'JWT_SECRET',
+  'JWT_EXPIRES_IN',
 ]);
 
 export { configService };

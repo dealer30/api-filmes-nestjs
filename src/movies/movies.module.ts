@@ -15,6 +15,9 @@ import { BannerDB, PhotoDB } from 'src/movies/services/photos/photo.entity';
 import { Actor, Director, Writer } from 'src/movies/services/people/people.entity';
 import { Category } from 'src/movies/services/categories/categories.entity';
 import { CategoryService } from 'src/movies/services/categories/categories.service';
+import { JwtModule } from '@nestjs/jwt';
+import { ConfigService, configService } from 'src/config/config.service';
+import { JwtStrategy } from './jwt.strategy';
 @Module({
   imports: [
     TypeOrmModule.forFeature([
@@ -26,9 +29,10 @@ import { CategoryService } from 'src/movies/services/categories/categories.servi
       Director,
       Category,
     ]),
+    JwtModule.register(configService.getJwtConfig()),
   ],
   controllers: [MoviesController],
-  providers: [MovieService, PhotoService, PeopleService, CategoryService],
+  providers: [MovieService, PhotoService, PeopleService, CategoryService, ConfigService, JwtStrategy],
 })
 export class MoviesModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {

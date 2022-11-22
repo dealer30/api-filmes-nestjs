@@ -33,7 +33,7 @@ export class CreateMovieDto {
   })
   debut: Date;
   @ApiProperty({
-    example: { banner: 'https://...', others: ['https://...', 'https://...'] },
+    example: { banner: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSqx8SUXCHUTeMs5LdSyZgjQ66qkWE_NQa4Xax2Wf2rS2_1TBmf', others: ['https://tm.ibxk.com.br/2019/07/26/26184221286369.jpg?ims=1200x675', 'https://almalondrina.com.br/wp-content/uploads/2019/05/Meia_Entrada_Cast_21_05_2019.jpg'] },
     description: 'As fotos do filme.'
   })
   photos: Photos;
