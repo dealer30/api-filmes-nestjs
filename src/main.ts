@@ -7,9 +7,11 @@ import { configService } from './config/config.service';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  app.useGlobalPipes(new ValidationPipe({
-    whitelist: true,
-  }));
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+    }),
+  );
 
   const document = SwaggerModule.createDocument(
     app,
@@ -22,6 +24,6 @@ async function bootstrap() {
   );
 
   SwaggerModule.setup('docs', app, document);
-  await app.listen(configService.getPort());
+  await app.listen(configService.getPort() || 3000);
 }
 bootstrap();
